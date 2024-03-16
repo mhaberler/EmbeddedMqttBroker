@@ -228,7 +228,7 @@ class Action{
          * @brief Action to implement.
          * 
          */
-        virtual void doAction();
+        virtual void doAction() {};
 };
 
 
