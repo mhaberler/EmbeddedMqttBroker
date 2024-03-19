@@ -11,7 +11,7 @@ MqttBroker::~MqttBroker(){
     delete freeMqttClientTask;
 
     // delete all MqttClients
-    std::map<int, MqttClient *>::iterator it;
+    std::unordered_map<int, MqttClient *>::iterator it;
     for (it = clients.begin(); it != clients.end(); it++)
     {
         delete it->second;

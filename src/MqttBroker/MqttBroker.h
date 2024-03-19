@@ -2,7 +2,7 @@
 #define MQTTBROKER_H
 
 #include <WiFi.h> 
-#include <map>
+#include <unordered_map>
 #include "WrapperFreeRTOS.h"
 #include "MqttMessages/FactoryMqttMessages.h"
 #include "MqttMessages/SubscribeMqttMessage.h"
@@ -57,7 +57,7 @@ private:
     QueueHandle_t deleteMqttClientQueue;
 
     /************************* clients structure **************************/
-    std::map<int,MqttClient*> clients;
+    std::unordered_map<int,MqttClient*> clients;
     
 public:
 
@@ -568,7 +568,7 @@ class NodeTrie
 private:
     char character;
     NodeTrie *bro, *son;
-    std::map<int, MqttClient*> *subscribedClients;
+    std::unordered_map<int, MqttClient*> *subscribedClients;
 
     /**
      * @brief When some client subscribe to a topic usin "+" wildcard, the tree
@@ -632,9 +632,9 @@ public:
     /**
      * @brief Get the Subscribed Mqtt Clients map.
      * 
-     * @return std::map<int, MqttClient*>*.
+     * @return std::unordered_map<int, MqttClient*>*.
      */
-    std::map<int, MqttClient*> * getSubscribedMqttClients(){
+    std::unordered_map<int, MqttClient*> * getSubscribedMqttClients(){
         return subscribedClients;
     }
 

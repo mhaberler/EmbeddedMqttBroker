@@ -49,7 +49,7 @@ void NodeTrie::insert(char character, NodeTrie *son)
     if (character == '$')
     {
         this->character = '$';
-        this->subscribedClients = new std::map<int,MqttClient*>;
+        this->subscribedClients = new std::unordered_map<int,MqttClient*>;
         this->son = son;
 
     } else { // if not, insert in order in this level.
@@ -121,7 +121,7 @@ void NodeTrie::findSubscribedMqttClients(std::vector<int>*clientsIds, String top
    if ( (i == topic.length() - 1) &&  (tmp->find('$')) ){
        // insert the mqttClients subscribed to this topic into clients map.
        
-       for(std::map<int,MqttClient*>::iterator it = tmp->getSubscribedMqttClients()->begin(); it != tmp->getSubscribedMqttClients()->end(); ++it) {
+       for(std::unordered_map<int,MqttClient*>::iterator it = tmp->getSubscribedMqttClients()->begin(); it != tmp->getSubscribedMqttClients()->end(); ++it) {
             clientsIds->push_back(it->first);
             }
    }
